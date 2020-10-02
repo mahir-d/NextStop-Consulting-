@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<style>
+			
+          .custBody{
+          display: flex;
+            
+          }
+          .custBody {
+          text-align: center;
+          
+          }      
+        
+			.customType {
+			  color: #FFFFFF;
+              font-family: Montserrat,Helvetica !important;
+			text-align: center;
+			}
+			
+			.customType span.cursor {
+			  display: inline-block;
+			  margin-left: 0.1rem;
+			  width: 3px;
+			  animation: blink 1s infinite;
+			}
+			.customType span.cursor.typing {
+			  animation: none;
+			}
+			@keyframes blink {
+			  0%  { background-color: #ccc; }
+			  49% { background-color: #ccc; }
+			  50% { background-color: transparent; }
+			  99% { background-color: transparent; }
+			  100%  { background-color: #ccc; }
+			}
+		</style>
+	</head>
+	<body class="custBody">
+      <h1  style="text-align: center"><b>Build Your Digital Future</b></h1>
+    		<h3 class="customType" style="height: 100px;"><b>NextSTOP</b> <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+    		</h3>
+		
+		<script type="text/javascript">
+			const typedTextSpan = document.querySelector(".typed-text");
+			const cursorSpan = document.querySelector(".cursor");
+
+			const textArray = [" develops digital Strategies", " seamlessly integrates Technology experts", " reimagines Operations into value streams", " optimizes key Processes", " aligns leadership", " empowers staff", " maximizes productivity", " delivers bottom line results"];
+			const typingDelay = 50;
+			const erasingDelay = 5;
+			const newTextDelay = 500; // Delay between current and next text
+			let textArrayIndex = 0;
+			let charIndex = 0;
+
+			function type() {
+			  if (charIndex < textArray[textArrayIndex].length) {
+			    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+			    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+			    charIndex++;
+			    setTimeout(type, typingDelay);
+			  } 
+			  else {
+			    cursorSpan.classList.remove("typing");
+			  	setTimeout(erase, newTextDelay);
+			  }
+			}
+
+			function erase() {
+				if (charIndex > 0) {
+			    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+			    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+			    charIndex--;
+			    setTimeout(erase, erasingDelay);
+			  } 
+			  else {
+			    cursorSpan.classList.remove("typing");
+			    textArrayIndex++;
+			    if(textArrayIndex>=textArray.length) textArrayIndex=0;
+			    setTimeout(type, typingDelay + 1100);
+			  }
+			}
+
+			// document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+			//   if(textArray.length) setTimeout(type, newTextDelay + 250);
+			//   console.log("hi deep")
+			// });
+
+			// function executeThis() { // On DOM Load initiate the effect
+			  	
+			//   if(textArray.length) setTimeout(type, newTextDelay + 250);
+			//   console.log("hi deep")
+			// };
+							
+
+			
+
+			window.addEventListener("mercury:load", function() { // On DOM Load initiate the effect
+			  if(textArray.length) setTimeout(type, newTextDelay + 250);
+			  
+			});
+
+		</script>
+	</body>
+</html>
